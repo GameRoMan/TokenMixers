@@ -6,7 +6,7 @@ import copy
 import random
 import argparse
 from utils import logger
-from typing import Optional
+from typing import Optional, Union
 from common import DEFAULT_IMAGE_WIDTH, DEFAULT_IMAGE_HEIGHT
 import numpy as np
 
@@ -51,7 +51,7 @@ class MultiScaleSampler(BaseSamplerDP):
         max_crop_size_h: int = getattr(opts, "sampler.msc.max_crop_size_height", 320)
 
         scale_inc: bool = getattr(opts, "sampler.msc.scale_inc", False)
-        scale_ep_intervals: list or int = getattr(
+        scale_ep_intervals: Union[list, int] = getattr(
             opts, "sampler.msc.ep_intervals", [40]
         )
         scale_inc_factor: float = getattr(opts, "sampler.msc.scale_inc_factor", 0.25)
@@ -252,7 +252,7 @@ class MultiScaleSamplerDDP(BaseSamplerDDP):
         max_crop_size_h: int = getattr(opts, "sampler.msc.max_crop_size_height", 320)
 
         scale_inc: bool = getattr(opts, "sampler.msc.scale_inc", False)
-        scale_ep_intervals: list or int = getattr(
+        scale_ep_intervals: Union[list, int] = getattr(
             opts, "sampler.msc.ep_intervals", [40]
         )
         scale_inc_factor: float = getattr(opts, "sampler.msc.scale_inc_factor", 0.25)

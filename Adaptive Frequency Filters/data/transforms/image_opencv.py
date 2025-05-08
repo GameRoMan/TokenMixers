@@ -272,7 +272,7 @@ class RandomResize(BaseTransformation):
 
 @register_transformations(name="random_zoom_out", type="image")
 class RandomZoomOut(BaseTransformation):
-    def __init__(self, opts, size: Optional[Sequence or int] = None):
+    def __init__(self, opts, size: Optional[Union[Sequence, int]] = None):
         side_range = getattr(
             opts, "image_augmentation.random_zoom_out.side_range", [1, 4]
         )
@@ -355,7 +355,7 @@ class RandomZoomOut(BaseTransformation):
 
 @register_transformations(name="random_scale", type="image")
 class RandomScale(BaseTransformation):
-    def __init__(self, opts, size: Optional[Sequence or int] = None):
+    def __init__(self, opts, size: Optional[Union[Sequence, int]] = None):
         min_scale = getattr(opts, "image_augmentation.random_scale.min_scale", 0.5)
         max_scale = getattr(opts, "image_augmentation.random_scale.max_scale", 2.0)
         interpolation = getattr(
@@ -438,7 +438,7 @@ class RandomResizedCrop(BaseTransformation):
     Adapted from Pytorch Torchvision
     """
 
-    def __init__(self, opts, size: tuple or int):
+    def __init__(self, opts, size: Union[tuple, int]):
 
         interpolation = getattr(
             opts, "image_augmentation.random_resized_crop.interpolation", "bilinear"
@@ -535,7 +535,7 @@ class RandomCrop(BaseTransformation):
     Randomly crop the image to a given size
     """
 
-    def __init__(self, opts, size: Sequence or int):
+    def __init__(self, opts, size: Union[Sequence, int]):
         super(RandomCrop, self).__init__(opts=opts)
         self.height, self.width = setup_size(size=size)
         self.opts = opts
@@ -1300,7 +1300,7 @@ class SSDCroping(BaseTransformation):
 
 @register_transformations(name="center_crop", type="image")
 class CenterCrop(BaseTransformation):
-    def __init__(self, opts, size: Sequence or int):
+    def __init__(self, opts, size: Union[Sequence, int]):
         super(CenterCrop, self).__init__(opts=opts)
         if isinstance(size, Sequence) and len(size) == 2:
             self.height, self.width = size[0], size[1]

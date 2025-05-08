@@ -5,7 +5,7 @@
 import os
 
 from utils.my_dataset_folder import ImageFolder
-from typing import Optional, Tuple, Dict
+from typing import Optional, Tuple, Dict, Union
 import numpy as np
 import math
 
@@ -58,7 +58,7 @@ class ImagenetOpenCVDataset(BaseImageDataset, ImageFolder):
         setattr(opts, "dataset.collate_fn_name_val", "imagenet_collate_fn")
         setattr(opts, "dataset.collate_fn_name_eval", "imagenet_collate_fn")
 
-    def _training_transforms(self, size: tuple or int):
+    def _training_transforms(self, size: Union[tuple, int]):
         """
         Training data augmentation methods (RandomResizedCrop --> RandomHorizontalFlip --> ToTensor).
         """

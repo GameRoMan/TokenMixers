@@ -19,7 +19,7 @@ def metric_monitor(
     opts,
     pred_label: Any,
     target_label: Any,
-    loss: Tensor or float,
+    loss: Union[Tensor, float],
     metric_names: list,
     use_distributed: Optional[bool] = False,
     grad_norm: Optional = None,

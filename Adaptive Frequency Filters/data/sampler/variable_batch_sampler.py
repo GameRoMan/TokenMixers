@@ -5,7 +5,7 @@
 import copy
 import random
 import argparse
-from typing import Optional
+from typing import Optional, Union
 import numpy as np
 import math
 
@@ -53,7 +53,7 @@ class VariableBatchSampler(BaseSamplerDP):
         max_crop_size_h: int = getattr(opts, "sampler.vbs.max_crop_size_height", 320)
 
         scale_inc: bool = getattr(opts, "sampler.vbs.scale_inc", False)
-        scale_ep_intervals: list or int = getattr(
+        scale_ep_intervals: Union[list, int] = getattr(
             opts, "sampler.vbs.ep_intervals", [40]
         )
         min_scale_inc_factor: float = getattr(
@@ -301,7 +301,7 @@ class VariableBatchSamplerDDP(BaseSamplerDDP):
         max_crop_size_h: int = getattr(opts, "sampler.vbs.max_crop_size_height", 320)
 
         scale_inc: bool = getattr(opts, "sampler.vbs.scale_inc", False)
-        scale_ep_intervals: list or int = getattr(
+        scale_ep_intervals: Union[list, int] = getattr(
             opts, "sampler.vbs.ep_intervals", [40]
         )
         min_scale_inc_factor: float = getattr(
